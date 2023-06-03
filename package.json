@@ -1,0 +1,14 @@
+{
+  "name": "numen",
+  "version": "1.0.0",
+  "description": "\"this is a server\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rosmi-numen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
