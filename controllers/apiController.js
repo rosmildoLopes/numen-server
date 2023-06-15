@@ -1,5 +1,5 @@
 const { Team } = require("../models/teams");
-const { validatorResult }
+
 
 class ApiController {
   hello(req, res) {
@@ -29,19 +29,24 @@ class ApiController {
   async crear(req, res) {
     try {
       const equipoGuardado = await new Team(req.body);
-      await equipoGuardado.save();
-      res.status(201).json(equipoGuardado);
-    } catch (error) {
+        await equipoGuardado.save();
+        res.status(201).json(equipoGuardado);
+      }catch (error) {
       res.status(400).json(error);
     }
   }
 
-  editar(req, res) {
-    res.status(201).json({
-      msg: "se edito este objeto",
-      obj: req.body.nombre,
-    });
-  }
+  async editar(req, res) {
+    try{
+      await Team.findByIdAndUpdate(req.params.id, req.body)
+      res.status(201).json({
+        msg:"el equipo con id" + req.params.id + "se actualizo"
+      });
+    }catch(error) {
+      res.status(400).json(error);
+    }
+    };
+  
 
   borrar(req, res) {
     res.status(204).json({

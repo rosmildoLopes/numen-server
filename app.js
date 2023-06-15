@@ -9,7 +9,7 @@ app.use(cors())
 
 const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
-const {connect} =require('./db/db')
+const { connect } = require('./db/db');
 
 app.use("/", indexRouter);
 app.use("/api/v1", apiRouter);

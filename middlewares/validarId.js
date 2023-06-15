@@ -10,4 +10,4 @@ const validarId = async (req, res, next ) => {
   }
 }
 
-module.exports = {validarId}
+module.exports = validarId;
