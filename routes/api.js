@@ -13,5 +13,6 @@ router.get("/buscar/id/:id", validarId, apiController.buscarPorId);
 router.get("/buscar/nombre/:nombre", apiController.buscarPorClub);
 router.post("/crear",checks,validarChecks,apiController.crear);
 router.put("/editar",validarId,checks,validarChecks , apiController.editar);
+router.delete("/borrar/:id", validarId, apiController.borrar);
 
 module.exports = router;
