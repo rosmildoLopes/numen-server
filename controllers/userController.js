@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-
+const {User} = require("../models/users")
 class UserController {
   ejemploSession(req, res) {
     const user = {
@@ -11,7 +11,7 @@ class UserController {
     res.json(req.session);
   }
   probarSession(req, res) {
-    res.json({ session: req.session, cookie: req.cookie.miPrimeraCookie });
+    res.json({ session: req.session, cookie: req.cookies.sessionDelUsuario });
   }
 
   borrarSession(req, res) {
@@ -28,6 +28,37 @@ class UserController {
     let comparacion2 = bcrypt.compareSync("hola", hash);
 
     res.json({ hash, comparacion1, comparacion2 });
+  }
+
+  async login(req, res) {
+    try{
+      const persona = await User.findOne({email: req.body.email})
+      if (persona == null){
+        res.json({msg:" la contraseña o el mail  es invalido"})
+      }
+      if(!bcrypt.compareSync(req.body.password, persona.password)) {
+        res.json({msg: "la contraseña o el mail es invalido"})
+      }
+
+      const user = {
+        _id: persona.id,
+        name: persona.name
+      }
+      req.session.user = user
+      if(req.body.remember){
+        res.cookie("sessionDelUsuario", req.session.user,{maxAge:120000})
+        res.json({msdg:" se creo  la sesion"})
+      }
+    } catch(error) {
+      res.json(error)
+    }
+  }
+  logout(req,res){
+    res.clearCookie("sessionDelUsuario")
+    req.session.destroy()
+    res.json({
+      msg: "sesion cerrada"
+    })
   }
 }
 
