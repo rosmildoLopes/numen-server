@@ -1,4 +1,4 @@
-const { Team } = require("../models/teams");
+const { Team } = require("../models/perfums");
 
 class ApiController {
   hello(req, res) {
@@ -49,7 +49,7 @@ class ApiController {
   }
 
   async borrar(req, res) {
-    await Team.findByIdAndDelete(req.params.id)
+    await Team.findByIdAndDelete(req.params.id);
     res.status(201).json({
       msg: "se borro este objeto",
     });

@@ -22,5 +22,5 @@ const schema = new Schema({
   }
 })
 
-const Team = model('Team', schema);
-module.exports = { Team }
+const Perfum = model('Perfum', schema);
+module.exports = { Perfum }
