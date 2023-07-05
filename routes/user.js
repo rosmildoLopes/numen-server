@@ -13,4 +13,7 @@ router.get("/hash", userController.probarHash)
 
 router.post("/login",checksLogin,validarChecks, userController.login)
 router.delete("/logout", userController.logout)
+
+// json web token
+router.get("/probarToken", userController.crearToken)
 module.exports = router

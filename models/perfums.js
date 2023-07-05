@@ -1,26 +1,27 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const schema = new Schema({
-  nombre:{
+  name: {
     type: String,
-    required:true
+    required: true,
+    unique: true,
   },
-  ciudad:{
+  brand: {
     type: String,
-    required:true
+    required: true,
   },
-  torneosGanados:{
+  price: {
     type: Number,
-    required:true
+    required: true,
   },
-  alias:{
-    type: String
-  },
-  categoria:{
+  description: {
     type: String,
-    required:true
+    required: true,
+  },
+  category: {
+    type: String,
   }
-})
+});
 
-const Perfum = model('Perfum', schema);
-module.exports = { Perfum }
+const Perfum = model("Perfum", schema);
+module.exports = { Perfum };

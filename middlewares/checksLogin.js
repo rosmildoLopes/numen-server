@@ -1,14 +1,18 @@
-const { check } = require('express-validator');
-
+const { check } = require("express-validator");
 
 const checksLogin = [
-  check('email')
-    .notEmpty().withMessage('El campo email es obligatorio')
-    .isString().withMessage('el campo email debe ser un string')
-    .isEmail().withMessage('el texto enviado debe ser un email'),
-  check('password')
-    .notEmpty().withMessage('El campo password es obligatorio')
-    .isString().withMessage('el campo password debe ser un string')
-]
+  check("email")
+    .notEmpty()
+    .withMessage("This field is required")
+    .isString()
+    .withMessage("This field must be a String")
+    .isEmail()
+    .withMessage("This field must be an email"),
+  check("password")
+    .notEmpty()
+    .withMessage("The password field is required")
+    .isString()
+    .withMessage("The password field must be a String"),
+];
 
 module.exports = checksLogin;

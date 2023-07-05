@@ -1,6 +1,6 @@
-const { Team } = require("../models/perfums");
+const { Perfum } = require("../models/perfums");
 const validarId = async (req, res, next) => {
-  const busqueda = await Team.findById(req.params.id);
+  const busqueda = await Perfum.findById(req.params.id);
   if (busqueda !== null) {
     next();
   } else {

@@ -1,35 +1,35 @@
-const { Team } = require("../models/perfums");
+const { Perfum } = require("../models/perfums");
 
 class ApiController {
   hello(req, res) {
-    res.send("helooooooooooooooooooo");
+    res.send("The perfume world!");
   }
 
   async verListado(req, res) {
-    const equipos = await Team.find();
-    res.status(200).json(equipos);
+    const perfumes = await Perfum.find();
+    res.status(200).json(perfumes);
   }
 
   async listadoPorCategoria(req, res) {
-    const equipos = await Team.find({ categoria: req.params.categoria });
-    res.status(200).json(equipos);
+    const perfumes = await Perfum.find({ categoria: req.params.categoria });
+    res.status(200).json(perfumes);
   }
 
   async buscarPorId(req, res) {
-    const equipos = await Team.findById(req.params.id);
-    res.status(200).json(equipos);
+    const perfumes = await Perfum.findById(req.params.id);
+    res.status(200).json(perfumes);
   }
 
   async buscarPorClub(req, res) {
-    const equipos = await Team.findOne({ nombre: req.params.nombre });
-    res.status(200).json(equipos);
+    const perfumes = await Perfum.findOne({ nombre: req.params.nombre });
+    res.status(200).json(perfumes);
   }
 
   async crear(req, res) {
     try {
-      const equipoGuardado = await new Team(req.body);
-      await equipoGuardado.save();
-      res.status(201).json(equipoGuardado);
+      const perfumeGuardado = await new Perfum(req.body);
+      await perfumeGuardado.save();
+      res.status(201).json(perfumeGuardado);
     } catch (error) {
       res.status(400).json(error);
     }
@@ -37,21 +37,18 @@ class ApiController {
 
   async editar(req, res) {
     try {
-      await Team.findByIdAndUpdate(req.params.id, req.body);
-      const equipos = await Team.findById(req.params.id);
-      res.status(200).json(equipos);
-      // res.status(201).json({
-      //   msg: "el equipo con id" + req.params.id + "se actualizo",
-      // });
+      await Perfum.findByIdAndUpdate(req.params.id, req.body);
+      const perfumes = await Perfum.findById(req.params.id);
+      res.status(200).json(perfumes);
     } catch (error) {
       res.status(400).json(error);
     }
   }
 
   async borrar(req, res) {
-    await Team.findByIdAndDelete(req.params.id);
+    await Perfum.findByIdAndDelete(req.params.id);
     res.status(201).json({
-      msg: "se borro este objeto",
+      msg: "This item has been deleted",
     });
   }
 }

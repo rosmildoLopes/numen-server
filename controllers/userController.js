@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const {User} = require("../models/users")
+const generadorToken = require('../utils/generador')
+
 class UserController {
   ejemploSession(req, res) {
     const user = {
@@ -59,6 +61,11 @@ class UserController {
     res.json({
       msg: "sesion cerrada"
     })
+  }
+
+  crearToken(req, res) {
+    const token = generadorToken(req.body)
+    res.json()
   }
 }
 
